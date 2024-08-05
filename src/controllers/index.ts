@@ -1,5 +1,5 @@
 export * from "./authcontroller";
-export * from "./AdminController";
+export * from "./admincontroller";
 export * from "./SqueezeController";
 export * from "./UserController";
 export * from "./helpcontroller";

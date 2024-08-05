@@ -1,8 +1,11 @@
 import { Repository } from "typeorm";
+import { Request } from "express";
 import AppDataSource from "../data-source";
 import { Organization } from "../models/organization";
-import { HttpError } from "../middleware";
+import { Conflict, HttpError, ResourceNotFound } from "../middleware";
 import { User } from "../models";
+import { Log } from "../models/log";
+import { adminLogSchema } from "../schemas/admin";
 
 export class AdminOrganisationService {
   public async update(
@@ -69,7 +72,7 @@ export class AdminOrganisationService {
 export class AdminUserService {}
 
 export class AdminLogService {
-  static async getPaginatedLogs(req: Request): Promise<{
+  public async getPaginatedLogs(req: Request): Promise<{
     logs: Log[];
     totalLogs: number;
     totalPages: number;

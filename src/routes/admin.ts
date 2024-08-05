@@ -7,10 +7,12 @@ import { UserType } from "../types";
 import { OrgRole } from "../models/user-organization";
 import { validateData } from "../middleware/validationMiddleware";
 import { orgUpdateSchema } from "../schemas/organization";
+import { adminLogSchema } from "../schemas/admin";
 
 const adminRoute = Router();
 
 const admin = new admincontroller.AdminOrganisationController();
+const adminLog = new admincontroller.AdminLogController();
 
 adminRoute.patch(
   "/orgs/:id",
@@ -28,10 +30,6 @@ adminRoute.delete(
   asyncHandler(admin.deleteOrganization),
 );
 
-adminRoute.get(
-  "/admin/logs",
-  validateData(adminLogSchema),
-  AdminLogController.getLogs,
-);
+adminRoute.get("/admin/logs", validateData(adminLogSchema), adminLog.getLogs);
 
 export { adminRoute };
