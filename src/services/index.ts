@@ -5,3 +5,6 @@ export * from "./squeezeservice";
 export * from "./userservice";
 export * from "./helpservice";
 export * from "./emailservice";
+export * from "./notificationSettingService";
+export * from "./notificationService";
+export * from "./organizationservice";

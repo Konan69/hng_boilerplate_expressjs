@@ -17,10 +17,6 @@ export async function comparePassword(
   return await bcrypt.compare(password, hashedPassword);
 }
 
-export async function generateAccessToken(user_id: string) {
-  return jwt.sign({ user_id }, config.TOKEN_SECRET, { expiresIn: "1d" });
-}
-
 export const generateNumericOTP = (length: number): string => {
   let otp = "";
   for (let i = 0; i < length; i++) {
@@ -30,8 +26,8 @@ export const generateNumericOTP = (length: number): string => {
 };
 
 export const generateToken = (payload: Record<string, unknown>) => {
-  return jwt.sign(payload, config.TOKEN_SECRET, {
-    expiresIn: config.TOKEN_EXPIRY,
+  return jwt.sign(payload, "helloworld", {
+    expiresIn: "1d",
   });
 };
 
