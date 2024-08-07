@@ -1,6 +1,9 @@
 import { Router } from "express";
 import { authMiddleware, checkOrgPermission } from "../middleware";
-import { AdminOrganisationController } from "../controllers";
+import {
+  AdminOrganisationController,
+  AdminLogController,
+} from "../controllers";
 import { UserType } from "../types";
 import { OrgRole } from "../models/user-organization";
 import { validateData } from "../middleware/validationMiddleware";
@@ -10,7 +13,7 @@ import { adminLogSchema } from "../schemas/admin";
 const adminRoute = Router();
 
 const admin = new AdminOrganisationController();
-const adminLog = new admincontroller.AdminLogController();
+const adminLog = new AdminLogController();
 
 adminRoute.patch(
   "/orgs/:id",
@@ -28,6 +31,10 @@ adminRoute.delete(
   admin.deleteOrganization,
 );
 
-adminRoute.get("/admin/logs", validateData(adminLogSchema), adminLog.getLogs);
+adminRoute.get(
+  "/admin/logs",
+  validateData({ params: adminLogSchema }),
+  adminLog.getLogs,
+);
 
 export { adminRoute };
