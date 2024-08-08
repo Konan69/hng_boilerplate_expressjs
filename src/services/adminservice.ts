@@ -101,7 +101,7 @@ export class AdminLogService {
     const totalPages = Math.ceil(totalLogs / Number(limit)) || 1;
 
     if (!logs.length) {
-      throw new ResourceNotFound("no Logs found");
+      throw new ResourceNotFound("0 Logs found");
     }
 
     return {

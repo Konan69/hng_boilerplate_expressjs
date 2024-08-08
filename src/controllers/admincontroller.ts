@@ -233,10 +233,10 @@ class AdminLogController {
     this.logService = new AdminLogService();
   }
 
-  async getLogs(req: Request, res: Response): Promise<void> {
-    const data = await this.logService.getPaginatedLogs(req);
-    sendJsonResponse(res, 200, "success", data);
-  }
+  public getLogs = asyncHandler(async (req: Request, res: Response) => {
+    const logs = await this.logService.getPaginatedLogs(req);
+    sendJsonResponse(res, 200, "success", logs);
+  });
 }
 
 export { AdminOrganisationController, AdminUserController, AdminLogController };
